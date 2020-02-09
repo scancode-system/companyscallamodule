@@ -1,0 +1,29 @@
+{
+    "name": "scancode-system/company-scalla-module",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\CompanyScalla\\Providers\\CompanyScallaServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\CompanyScalla\\": ""
+        }
+    },
+    "type": "laravel-module",
+    "require": {
+        "scancode-system/ipi-module":"^1.0"
+    }
+}

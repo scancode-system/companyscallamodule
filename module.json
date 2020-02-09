@@ -1,0 +1,13 @@
+{
+    "name": "CompanyScalla",
+    "alias": "companyscalla",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\CompanyScalla\\Providers\\CompanyScallaServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
