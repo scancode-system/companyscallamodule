@@ -1,16 +1,9 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::prefix('companyscalla')->group(function() {
-    Route::get('/', 'CompanyScallaController@index');
+
+	Route::get('report/products', 'ReportController@products')->name('companyscalla.report.products');
+    Route::get('txt/orders/scalla', 'ExportController@txtOrders')->name('exports.txt.orders.scalla');
+
 });
+
