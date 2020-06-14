@@ -24,7 +24,7 @@
     },
     "type": "laravel-module",
     "require": {
-        "scancode-system/ipi-module":"^1.0",
-        "scancode-system/scancode-base-module":"^1.0"
+        "scancode-system/ipi-module":"^2.0",
+        "scancode-system/scancode-base-module":"^2.0"
     }
 }
