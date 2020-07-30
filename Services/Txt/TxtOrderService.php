@@ -1,23 +1,22 @@
 <?php
 
-namespace Modules\CompanyScalla\Services;
+namespace Modules\CompanyScalla\Services\Txt;
 
 use Illuminate\Support\Facades\Storage;
 use Modules\Order\Repositories\OrderRepository;
+use Modules\Dashboard\Services\Txt\TxtService;
 use  ZipArchive;
 
-class TxtOrderService 
+class TxtOrderService extends TxtService
 {
 
-	public function run()
+	public function build()
 	{
-		Storage::deleteDirectory('txt-scalla');
-
 		$orders = OrderRepository::loadClosedOrders();
 		foreach ($orders as $order) 
 		{
-			$file_orders_path = 'txt-scalla/pedidos.txt';
-			$file_items_path = 'txt-scalla/pedidositens.txt';
+			$file_orders_path = $this->path_base.'pedidos.txt';
+			$file_items_path = $this->path_base.'pedidositens.txt';
 
 			$this->header($file_orders_path, $order);
 
@@ -26,9 +25,6 @@ class TxtOrderService
 				$this->item($file_items_path, $item);
 			}
 		}
-
-		$this->zip();
-		Storage::deleteDirectory('txt-scalla');
 	}
 
 	private function header($file_path, $order)
@@ -86,27 +82,9 @@ class TxtOrderService
 	}
 
 
-	public function zip()
-	{
-		$files = Storage::allFiles('txt-scalla');
-		$zip_path = storage_path('app/txt-scalla.zip'); 
-		$zip = new ZipArchive;
-		$zip->open($zip_path, ZipArchive::CREATE | ZipArchive::OVERWRITE);
-		foreach ($files as $file) {
-			$zip->addFile(storage_path('app/'.$file), $file);
-		}
-		$zip->close();
-	}	
-
 	private function file_path($order)
 	{
-		return 'txt-scalla/'.mb_substr(addString($order->id, 7, '0'), 0, 7). '.txt';
-	}
-
-
-	public function download()
-	{
-		return response()->download(storage_path('app/txt-scalla.zip'))->deleteFileAfterSend();;
+		return $this->path_base.'/'.mb_substr(addString($order->id, 7, '0'), 0, 7). '.txt';
 	}
 
 }

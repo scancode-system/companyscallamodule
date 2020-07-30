@@ -1,1 +1,0 @@
-<a href="{{ route('companyscalla.report.products') }}" class="list-group-item list-group-item-accent-dark list-group-item-divider list-group-item-action">Produtos - Scalla</a>
